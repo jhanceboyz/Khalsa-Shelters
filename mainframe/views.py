@@ -13,4 +13,4 @@ def index(request):
 def tiledetails(request, tileID):
     print("----------------------------------")
     print( tileID)
-    return HttpResponse("hello")
+    return render(request, 'tiledetails.html', {"Tiles":Tile.objects.all()})
