@@ -1,67 +1,76 @@
 {% extends 'layout.html' %}
 {% load static %}
 
+{% block head %}
+<style>
+    select{
+        margin: 5px;
+    }
+</style>
+{% endblock head %}
+
 {% block body %}
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
         <div class="text-center">
             <div class="container">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Distance
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">10KM</a></li>
-                        <li><a class="dropdown-item" href="#">20KM</a></li>
-                        <li><a class="dropdown-item" href="#">30KM</a></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Bedrooms
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">1</a></li>
-                        <li><a class="dropdown-item" href="#">2</a></li>
-                        <li><a class="dropdown-item" href="#">3</a></li>
-                        <li><a class="dropdown-item" href="#">4</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="container">
-
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+                    <div class="col">
+                        Number of Bedrooms
+                        <select name="numberofroom" id="">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select> &nbsp; &nbsp;
+                        Number of Bathrooms
+                        <select name="numberofbath" id="">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select> &nbsp; &nbsp;
+                        Location
+                        <input type="text" name="location" id="">
+                        <button type="submit" class="btn btn-warning btn-sm">Search</button>
+                    </div>
+                </form>
             </div>
             <h3 class="section-subheading text-muted">Affordable rental houses for everyone</h3>
         </div>
 
-            <div class="row">
+        <div class="row">
 
-                {% for tile in Tiles %}
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <!-- Portfolio item 2-->
-                    <div class="portfolio-item">
-                        <form action="{%url 'tiledetails' tile.id %}" method="post">
-                            {% csrf_token %}
-                        <button name="id" type="submit" value="{{tile.id}}" class="portfolio-link" data-bs-toggle="modal">
-                        </form>
-                            <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="{% static 'assets/img/portfolio/2.png' %}" alt="..." />
-                        </button>
-                        <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading">{{tile.title}}</div>
-                            <div class="portfolio-caption-subheading text-muted">{{tile.description}}</div>
-                        </div>
+            {% for tile in Tiles %}
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <!-- Portfolio item 2-->
+                <div class="portfolio-item">
+                    <form action="{%url 'tiledetails' tile.id %}" method="post">
+                        {% csrf_token %}
+                        <button name="id" type="submit" value="{{tile.id}}" class="portfolio-link"
+                            data-bs-toggle="modal">
+                    </form>
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                    </div>
+                    <img class="img-fluid" src="{% static 'assets/img/portfolio/2.png' %}" alt="..." />
+                    </button>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">{{tile.numberofbedroom}} Bedrooms and
+                            {{tile.numberofbathroom}} Bathroom</div>
+                        <div class="portfolio-caption-subheading text-muted">{{tile.description}}</div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-
-
-
+            {% endfor %}
+        </div>
     </div>
 </section>
 

@@ -1,5 +1,58 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<h1>Hello</h1>
+<h1 style="text-align: center;">Ad Details</h1>
+
+<div class="comtainer m-5">
+    <div class="table-responsive-sm">
+        <table class="table">
+            <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>{{tiledata.title}}</td>
+                </tr>
+                  <tr>
+                    <td>Description</td>
+                    <td>{{tiledata.description}}</td>
+                  </tr>
+                  <tr>
+                    <td>City</td>
+                    <td>{{tiledata.city}}</td>
+                  </tr>
+                  <tr>
+                    <td>Price</td>
+                    <td>{{tiledata.price}}</td>
+                  </tr>
+                  <tr>
+                    <td>E-mail</td>
+                    <td>{{tiledata.email}}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone no</td>
+                    <td> <a href="tel:{{tiledata.phone}}">{{tiledata.phone}}</a></td>
+                  </tr>
+                  <tr>
+                    <td>Number of bedroom</td>
+                    <td>{{tiledata.numberofbedroom}}</td>
+                  </tr>
+                  <tr>
+                    <td>Number of bathroom</td>
+                    <td>{{tiledata.numberofbathroom}}</td>
+                  </tr>
+                  <tr>
+                    <td>Occupancies</td>
+                    <td>{{tiledata.occupants}}</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><button type="button" class="btn btn-danger">Remove Ad!</button></td>
+                  </tr>
+              </tbody>
+        </table>
+      </div>
+</div>
 {% endblock body %} 

@@ -9,13 +9,16 @@ from .models import Tile
 
 def index(request):
     if request.method == 'POST':
-        print(request.POST['id'])
+        room = request.POST.get('numberofroom')
+        bath = int(request.POST.get('numberofbath'))
+        loc = request.POST.get('location')
+        query = Tile.objects.filter(numberofbathroom = bath,numberofbedroom = room, city=loc)
+        return render(request, 'index.html', {"Tiles": query})
     return render(request, 'index.html', {"Tiles":Tile.objects.all()})
 
 def tiledetails(request, tileID):
-    print("----------------------------------")
-    print( tileID)
-    return render(request, 'tiledetails.html', {"Tiles":Tile.objects.all()})
+    tiledata = Tile.objects.get(pk = tileID)
+    return render(request, 'tiledetails.html', {"tiledata":tiledata})
 
 def postad(request):
     if request.method == 'POST':
